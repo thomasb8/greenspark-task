@@ -1,4 +1,5 @@
 import { InjectionKey } from "vue";
+import Widget from "../types/Widget";
 
 export default class ApiService {
   constructor(private readonly apiBaseUrl: string) {
@@ -6,8 +7,8 @@ export default class ApiService {
   }
 
   async fetchWidgets() {
-    const res = await fetch(`${this.apiBaseUrl}/product-widgets`);
-    return await res.json();
+    const widgets = await (await fetch(`${this.apiBaseUrl}/product-widgets`)).json();
+    return widgets as Widget[];
   }
 }
 

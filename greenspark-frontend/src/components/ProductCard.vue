@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import Logo from "./Logo.vue";
   import Widget, { SelectableColor } from "../types/Widget";
+  import Switch from "./Switch.vue";
   const props = defineProps<{
     widget: Widget
   }>();
@@ -33,7 +34,7 @@
     <div class="options">
       <div>{{ props.widget.linked }}</div>
       <div>{{ props.widget.selectedColor }}</div>
-      <div>{{ props.widget.active }}</div>
+      <div><Switch :value="props.widget.active" @on-change="props.widget.active = !props.widget.active" ></Switch>{{ props.widget.active }}</div>
     </div>
   </div>
 </template>

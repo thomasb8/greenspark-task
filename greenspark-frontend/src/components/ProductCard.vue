@@ -5,7 +5,7 @@
   }>();
 
   function generateActionText() {
-    return `This product ${props.widget.action} ${props.widget.amount} ${props.widget.type}`;
+    return `This product ${props.widget.action} `;
   }
 
   function generateProductText() {
@@ -15,10 +15,14 @@
 
 <template>
   <div class="product-card-container">
-    <div class="title" :class="widget.selectedColor">
-      <div>logo</div>
-      <h3>{{ generateActionText() }}</h3>
-      <h3>{{ generateProductText() }}</h3>
+    <div class="title-container" :class="widget.selectedColor">
+      <div class="logo">
+        <img src="../assets/greenspark-logo.svg" alt="Greenspark logo">
+      </div>
+      <div class="title">
+        <h3 class="action">{{ generateActionText() }}</h3>
+        <h3 class="product-description">{{ generateProductText() }}</h3>
+      </div>
     </div>
     <div class="options">
       <div>{{ props.widget.linked }}</div>
@@ -30,7 +34,9 @@
 
 <style scoped lang="scss">
 .product-card-container {
-  .title {
+  .title-container {
+    padding: 0.625rem 0.75rem;
+    border-radius: 6px;
     &.blue {
       background: $color-blue;
     }
@@ -39,6 +45,20 @@
     }
     &.beige {
       background: $color-beige;
+    }
+    display: flex;
+    align-items: center;
+    .title {
+      margin-left: 1rem;
+      .action {
+        font-weight: normal;
+        font-size: .75rem;
+        padding-bottom: 0.5rem;
+      }
+      .product-description {
+        font-weight: bold;
+        font-size: 1.115rem;
+      }
     }
   }
   .options {

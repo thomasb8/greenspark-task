@@ -5,5 +5,15 @@ export default interface Widget {
   readonly action: string,
   readonly active: boolean,
   readonly linked: boolean,
-  readonly selectedColor: string
-}
+  readonly selectedColor: SelectableColor
+};
+
+export const SelectableColor = {
+  white: 'white',
+  black: 'black',
+  blue: 'blue',
+  green: 'green',
+  beige: 'beige'
+} as const;
+
+export type SelectableColor = typeof SelectableColor[keyof typeof SelectableColor];

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import Widget from "../types/Widget";
+  import Logo from "./Logo.vue";
+  import Widget, { SelectableColor } from "../types/Widget";
   const props = defineProps<{
     widget: Widget
   }>();
@@ -11,15 +12,20 @@
   function generateProductText() {
     return `${props.widget.amount} ${props.widget.type}`;
   }
+
+  function getLogoColor() {
+    return ([SelectableColor.white, SelectableColor.beige] as SelectableColor[])
+      .includes(props.widget.selectedColor)
+      ? SelectableColor.green
+      : SelectableColor.white;
+  }
 </script>
 
 <template>
   <div class="product-card-container">
     <div class="title-container" :class="widget.selectedColor">
-      <div class="logo">
-        <img src="../assets/greenspark-logo.svg" alt="Greenspark logo">
-      </div>
-      <div class="title">
+      <Logo :color="getLogoColor()"></Logo>
+      <div class="title" :style="{ color: getLogoColor() }">
         <h3 class="action">{{ generateActionText() }}</h3>
         <h3 class="product-description">{{ generateProductText() }}</h3>
       </div>

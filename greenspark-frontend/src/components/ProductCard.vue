@@ -2,6 +2,7 @@
   import Logo from "./Logo.vue";
   import Widget, { SelectableColor } from "../types/Widget";
   import Switch from "./Switch.vue";
+  import Checkbox from "./Checkbox.vue";
   const props = defineProps<{
     widget: Widget
   }>();
@@ -32,9 +33,13 @@
       </div>
     </div>
     <div class="options">
-      <div>{{ props.widget.linked }}</div>
+      <div>
+        <Checkbox :value="props.widget.linked"
+                  :id="`cb-${props.widget.id}`"
+                  @on-change="props.widget.linked = !props.widget.linked"></Checkbox>
+      </div>
       <div>{{ props.widget.selectedColor }}</div>
-      <div><Switch :value="props.widget.active" @on-change="props.widget.active = !props.widget.active" ></Switch>{{ props.widget.active }}</div>
+      <div><Switch :value="props.widget.active" @on-change="props.widget.active = !props.widget.active" ></Switch></div>
     </div>
   </div>
 </template>

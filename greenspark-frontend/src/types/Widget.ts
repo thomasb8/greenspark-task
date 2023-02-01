@@ -16,4 +16,12 @@ export const SelectableColor = {
   beige: 'beige'
 } as const;
 
+export const OrderedColors = [
+  SelectableColor.blue,
+  SelectableColor.green,
+  SelectableColor.beige,
+  SelectableColor.white,
+  SelectableColor.black
+];
+
 export type SelectableColor = typeof SelectableColor[keyof typeof SelectableColor];

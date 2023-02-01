@@ -1,7 +1,26 @@
 $color-blue: #2E3A8C;
 $color-green: #3B755F;
 $color-beige: #F2EBDB;
-$color-white: #F9F9F9;
+$color-off-white: #F9F9F9;
+$color-white: #FFFFFF;
 $color-black: #212121;
 $color-gray: #AFC6BD;
 $color-border: #B0B0B0;
+
+@mixin color-classes() {
+  &.blue {
+    background: $color-blue;
+  }
+  &.green {
+    background: $color-green;
+  }
+  &.beige {
+    background: $color-beige;
+  }
+  &.white {
+    background: $color-white;
+  }
+  &.black {
+    background: $color-black;
+  }
+}

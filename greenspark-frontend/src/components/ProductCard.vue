@@ -3,6 +3,7 @@
   import Widget, { SelectableColor } from "../types/Widget";
   import Switch from "./Switch.vue";
   import Checkbox from "./Checkbox.vue";
+  import ColorSelector from "./ColorSelector.vue";
   const props = defineProps<{
     widget: Widget
   }>();
@@ -21,6 +22,7 @@
       ? SelectableColor.green
       : SelectableColor.white;
   }
+
 </script>
 
 <template>
@@ -38,7 +40,9 @@
                   :id="`cb-${props.widget.id}`"
                   @on-change="props.widget.linked = !props.widget.linked"></Checkbox>
       </div>
-      <div>{{ props.widget.selectedColor }}</div>
+      <div><ColorSelector :id="props.widget.id.toString()"
+                          :selected-color="props.widget.selectedColor"
+                          @change="props.widget.selectedColor = $event;"></ColorSelector></div>
       <div><Switch :value="props.widget.active" @on-change="props.widget.active = !props.widget.active" ></Switch></div>
     </div>
   </div>
@@ -49,15 +53,7 @@
   .title-container {
     padding: 0.625rem 0.75rem;
     border-radius: 6px;
-    &.blue {
-      background: $color-blue;
-    }
-    &.green {
-      background: $color-green;
-    }
-    &.beige {
-      background: $color-beige;
-    }
+    @include color-classes();
     display: flex;
     align-items: center;
     .title {

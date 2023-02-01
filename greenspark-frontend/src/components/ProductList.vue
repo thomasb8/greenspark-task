@@ -13,7 +13,7 @@
 
 <style scoped lang="scss">
 .product-list-container {
-  background: $color-white;
+  background: $color-off-white;
   border-radius: 8px;
   color: $color-black;
   padding: 2.25rem;

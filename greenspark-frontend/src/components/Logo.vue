@@ -30,7 +30,7 @@ const props = defineProps<{ color: SelectableColor }>()
     fill: $color-green;
   }
   &.white svg path {
-    fill: $color-white;
+    fill: $color-off-white;
   }
 }
 </style>

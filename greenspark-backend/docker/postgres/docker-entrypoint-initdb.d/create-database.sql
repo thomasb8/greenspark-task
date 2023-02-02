@@ -1,1 +1,1 @@
-CREATE DATABASE greenspark_db;
+CREATE DATABASE greenspark_db_test;

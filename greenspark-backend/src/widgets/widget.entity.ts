@@ -23,3 +23,19 @@ export default class Widget {
   @Column()
   selectedColor: string;
 }
+
+export const SelectableColor = {
+  white: 'white',
+  black: 'black',
+  blue: 'blue',
+  green: 'green',
+  beige: 'beige'
+} as const;
+
+export const OrderedColors = [
+  SelectableColor.blue,
+  SelectableColor.green,
+  SelectableColor.beige,
+  SelectableColor.white,
+  SelectableColor.black
+];

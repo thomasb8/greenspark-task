@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import { createOrmConfig } from "../src/ormconfig";
 import Widget from "../src/widgets/widget.entity";
 
-const data = [
+export const fakeData = [
   {
     "id": 1,
     "type": "plastic bottles",
@@ -43,7 +43,7 @@ async function init() {
 
   console.log('Widgets cleared');
 
-  const res = await widgetRepository.insert(data);
+  const res = await widgetRepository.insert(fakeData);
 
   console.log(res.identifiers.length + ' widgets inserted');
 

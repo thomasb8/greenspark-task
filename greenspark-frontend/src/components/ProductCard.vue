@@ -6,6 +6,10 @@
   import ColorSelector from "./common/color-selector/ColorSelector.vue";
   import LinkDialog from "./LinkDialog.vue";
   import { store } from '../store';
+  import { inject } from "vue";
+  import ApiService, { API_SERVICE } from "../api/ApiService";
+
+  const apiService = inject<ApiService>(API_SERVICE);
 
   const props = defineProps<{
     widget: Widget
@@ -24,6 +28,13 @@
       .includes(props.widget.selectedColor)
       ? SelectableColor.green
       : SelectableColor.white;
+  }
+
+  async function updateWidget(id: number, partial: Partial<Widget>) {
+    const res = await apiService?.updateWidget(id, partial);
+    if (res) {
+      store.update(id, res);
+    }
   }
 
 </script>
@@ -50,18 +61,18 @@
         </div>
         <Checkbox :value="props.widget.linked"
                   :id="`cb-${props.widget.id}`"
-                  @on-change="store.update(props.widget.id, { linked: $event })"></Checkbox>
+                  @on-change="updateWidget(props.widget.id, { linked: $event })"></Checkbox>
       </div>
       <div class="option">
         <div class="name">Badge colour</div>
         <ColorSelector :id="props.widget.id.toString()"
                           :selected-color="props.widget.selectedColor"
-                          @change="store.update(props.widget.id, { selectedColor: $event })">
+                          @change="updateWidget(props.widget.id, { selectedColor: $event })">
         </ColorSelector>
       </div>
       <div class="option">
         <div class="name">Activate badge</div>
-        <Switch :value="props.widget.active" @on-change="store.update(props.widget.id, { active: $event })"></Switch>
+        <Switch :value="props.widget.active" @on-change="updateWidget(props.widget.id, { active: $event })"></Switch>
       </div>
     </div>
   </div>

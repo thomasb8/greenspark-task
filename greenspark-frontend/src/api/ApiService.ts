@@ -10,6 +10,12 @@ export default class ApiService {
     const widgets = await (await fetch(`${this.apiBaseUrl}/product-widgets`)).json();
     return widgets as Widget[];
   }
+
+  async updateWidget(id: number, widget: Partial<Widget>) {
+    const res = await (await fetch(`${this.apiBaseUrl}/product-widgets/${id}`,
+      { method: 'put', body: JSON.stringify(widget), headers: { 'Content-Type': 'application/json '} })).json();
+    return res as Widget;
+  }
 }
 
 export const API_SERVICE: InjectionKey<ApiService> = Symbol();

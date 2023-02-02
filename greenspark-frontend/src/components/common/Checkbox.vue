@@ -55,7 +55,7 @@ input {
     width: calc-rem(18);
     height: calc-rem(18);
     border: none;
-    background: url("../assets/checkbox.svg") no-repeat;
+    background: url("../../assets/checkbox.svg") no-repeat;
     background-size: contain;
   }
 }

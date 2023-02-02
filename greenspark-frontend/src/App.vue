@@ -1,16 +1,17 @@
 <script setup lang="ts">
 
 import { API_SERVICE } from "./api/ApiService";
-import { inject, onMounted, ref } from "vue";
-import Widget from "./types/Widget";
+import { inject, onMounted } from "vue";
 import ProductCard from "./components/ProductCard.vue";
 import ProductList from "./components/ProductList.vue";
-
+import { store } from "./store";
 const apiService = inject(API_SERVICE);
-const widgets = ref<Widget[] | undefined>([]);
 
 onMounted(async () => {
-  widgets.value = await apiService?.fetchWidgets();
+  const widgets = await apiService?.fetchWidgets();
+  if (widgets) {
+    store.set(widgets);
+  }
 });
 
 </script>
@@ -18,7 +19,7 @@ onMounted(async () => {
 <template>
   <div class="container">
     <ProductList>
-      <ProductCard v-for="widget of widgets" :widget="widget" :key="widget.id"></ProductCard>
+      <ProductCard v-for="widget of store.widgets" :widget="widget" :key="widget.id"></ProductCard>
     </ProductList>
   </div>
 </template>

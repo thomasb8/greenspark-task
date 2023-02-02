@@ -3,9 +3,9 @@ export default interface Widget {
   readonly type: string,
   readonly amount: number,
   readonly action: string,
-  readonly active: boolean,
-  readonly linked: boolean,
-  readonly selectedColor: SelectableColor
+  active: boolean,
+  linked: boolean,
+  selectedColor: SelectableColor
 };
 
 export const SelectableColor = {

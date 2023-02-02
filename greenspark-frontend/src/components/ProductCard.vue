@@ -1,10 +1,12 @@
 <script setup lang="ts">
-  import Logo from "./Logo.vue";
+  import Logo from "./common/Logo.vue";
   import Widget, { SelectableColor } from "../types/Widget";
-  import Switch from "./Switch.vue";
-  import Checkbox from "./Checkbox.vue";
-  import ColorSelector from "./ColorSelector.vue";
+  import Switch from "./common/Switch.vue";
+  import Checkbox from "./common/Checkbox.vue";
+  import ColorSelector from "./common/color-selector/ColorSelector.vue";
   import LinkDialog from "./LinkDialog.vue";
+  import { store } from '../store';
+
   const props = defineProps<{
     widget: Widget
   }>();
@@ -48,18 +50,18 @@
         </div>
         <Checkbox :value="props.widget.linked"
                   :id="`cb-${props.widget.id}`"
-                  @on-change="props.widget.linked = !props.widget.linked"></Checkbox>
+                  @on-change="store.update(props.widget.id, { linked: $event })"></Checkbox>
       </div>
       <div class="option">
         <div class="name">Badge colour</div>
         <ColorSelector :id="props.widget.id.toString()"
                           :selected-color="props.widget.selectedColor"
-                          @change="props.widget.selectedColor = $event">
+                          @change="store.update(props.widget.id, { selectedColor: $event })">
         </ColorSelector>
       </div>
       <div class="option">
         <div class="name">Activate badge</div>
-        <Switch :value="props.widget.active" @on-change="props.widget.active = !props.widget.active"></Switch>
+        <Switch :value="props.widget.active" @on-change="store.update(props.widget.id, { active: $event })"></Switch>
       </div>
     </div>
   </div>

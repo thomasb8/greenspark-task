@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SelectableColor, OrderedColors } from "../types/Widget";
+import { SelectableColor, OrderedColors } from "../../../types/Widget";
 import ColorBox from "./ColorBox.vue";
 
 const props = defineProps<{ selectedColor: SelectableColor, id: string }>();

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SelectableColor } from "../types/Widget";
+import { SelectableColor } from "../../../types/Widget";
 
 const props = defineProps<{ id: string, color: SelectableColor, selectedColor: SelectableColor }>();
 const emit = defineEmits(['change']);

@@ -4,6 +4,7 @@
   import Switch from "./Switch.vue";
   import Checkbox from "./Checkbox.vue";
   import ColorSelector from "./ColorSelector.vue";
+  import LinkDialog from "./LinkDialog.vue";
   const props = defineProps<{
     widget: Widget
   }>();
@@ -36,7 +37,15 @@
     </div>
     <div class="options">
       <div class="option">
-        <div class="name">Link to Public Profile</div>
+        <div class="name">
+          Link to Public Profile
+          <v-menu open-on-hover close-delay="300" width="250" location="right bottom">
+            <template v-slot:activator="{ props }" >
+              <v-icon icon="mdi-information-outline" color="#3B755F" size="x-small" class="icon" v-bind="props"></v-icon>
+            </template>
+            <LinkDialog></LinkDialog>
+          </v-menu>
+        </div>
         <Checkbox :value="props.widget.linked"
                   :id="`cb-${props.widget.id}`"
                   @on-change="props.widget.linked = !props.widget.linked"></Checkbox>
@@ -89,6 +98,10 @@
       .name {
         font-size: calc-rem(14);
         color: $color-green;
+        .icon {
+          vertical-align: super;
+          cursor: pointer;
+        }
       }
     }
   }

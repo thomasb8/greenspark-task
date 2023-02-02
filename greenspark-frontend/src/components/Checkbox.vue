@@ -27,6 +27,7 @@ input {
   height: calc-rem(14);
   border-radius: 2px;
   border: calc-rem(2) solid black;
+  box-sizing: content-box;
   &:hover {
     cursor: pointer;
     &::after {

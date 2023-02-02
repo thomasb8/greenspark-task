@@ -24,6 +24,7 @@ input {
   width: 1rem;
   height: 1rem;
   box-shadow: 0 8.5px 8.5px rgba(0, 0, 0, 0.01);
+  box-sizing: content-box;
   &:hover {
     opacity: 0.8;
     cursor: pointer;

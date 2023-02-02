@@ -8,11 +8,13 @@ export class WidgetsService {
     @Inject(WIDGETS_REPOSITORY) private widgetRepository: WidgetsRepository,
   ) {}
 
-  list() {
+  list(): Promise<Widget[]> {
     return this.widgetRepository.list();
   }
 
-  update(widget: Widget) {
-    return this.widgetRepository.update(widget);
+  async update(id: number, widget: Partial<Widget>): Promise<Widget | undefined> {
+    const existing = await this.widgetRepository.findById(id);
+    if (!existing) return;
+    return await this.widgetRepository.save({ ...existing, ...widget });
   }
 }

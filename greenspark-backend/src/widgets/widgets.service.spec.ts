@@ -6,7 +6,6 @@ import Widget from "./widget.entity";
 
 describe('WidgetsService', () => {
   let service: WidgetsService;
-  let repository: WidgetsTestRepository;
   const testWidgets = [{ id: 1, active: true }, { id: 2, active: false }] as Widget[];
   beforeEach(async () => {
     const repository = new WidgetsTestRepository(testWidgets);
@@ -29,7 +28,7 @@ describe('WidgetsService', () => {
 
   describe('#update', () => {
     it('should update widget by id', async () => {
-      const widget = await service.update({ id: 1, selectedColor: 'green' } as Widget);
+      const widget = await service.update(1, { selectedColor: 'green' } as Widget);
       expect(widget).toMatchObject({ id: 1, selectedColor: 'green', active: true })
     });
   })

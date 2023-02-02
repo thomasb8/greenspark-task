@@ -12,8 +12,11 @@ export default class WidgetsSqlRepository implements WidgetsRepository {
     return this.widgetRepository.find();
   }
 
-  async update(widget: Widget): Promise<Widget> {
-    return this.widgetRepository.save(widget);
+  findById(id: number) {
+    return this.widgetRepository.findOneBy({ id });
   }
 
+  save(widget: Partial<Widget>) {
+    return this.widgetRepository.save(widget);
+  }
 }

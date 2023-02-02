@@ -1,5 +1,5 @@
-import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { DataSource, DataSourceOptions } from "typeorm";
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
-export const createOrmConfig: () => PostgresConnectionOptions = () => {
+export const createOrmConfig: () => DataSourceOptions = () => {
   return {
     name: 'greenspark',
     type: 'postgres',
@@ -31,3 +31,5 @@ export const createOrmConfig: () => PostgresConnectionOptions = () => {
     synchronize: false
   };
 };
+
+export default new DataSource(createOrmConfig());

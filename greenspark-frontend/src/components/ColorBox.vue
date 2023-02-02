@@ -18,8 +18,7 @@ const emit = defineEmits(['change']);
 <style scoped lang="scss">
 input {
   visibility: hidden;
-  width: 0;
-  height: 0;
+  position: absolute;
 }
 .color-box {
   width: 1rem;
@@ -30,9 +29,9 @@ input {
     cursor: pointer;
   }
   &.selected {
-    width: 0.8125rem;
-    height: 0.8125rem;
-    border: 0.1875rem solid $color-border;
+    width: calc-rem(14);
+    height: calc-rem(14);
+    border: calc-rem(1.5) solid $color-border;
   }
   @include color-classes();
 }

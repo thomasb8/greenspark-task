@@ -20,10 +20,10 @@ function handleChange() {
 <style scoped lang="scss">
 .switch {
   position: relative;
-  width: 2.5rem;
-  height: 1.25rem;
+  width: calc-rem(40);
+  height: calc-rem(20);
   background: $color-off-white;
-  border-radius: 2.125rem;
+  border-radius: calc-rem(34);
   border: 0.5px solid $color-gray;
   box-shadow: inset 0 1px 6.8px rgba(0, 0, 0, 0.15);
   .knob {
@@ -34,8 +34,8 @@ function handleChange() {
     position: absolute;
     left: 0;
     transition: left .15s ease;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: calc-rem(20);
+    height: calc-rem(20);
     background: $color-green;
     border-radius: 50%;
     &::after {
@@ -55,7 +55,7 @@ function handleChange() {
     background: $color-green;
     .knob {
       transform: translateX(2px);
-      left: calc(100% - 1.25rem);
+      left: calc(100% - calc-rem(20));
     }
   }
   &:hover {

@@ -16,22 +16,34 @@
   background: $color-off-white;
   border-radius: 8px;
   color: $color-black;
-  padding: 2.25rem;
+  padding: calc-rem(36);
   h3 {
-    font-size: 1.875rem;
+    font-size: calc-rem(30);
     font-weight: 700;
-    line-height: 2.25rem;
+    line-height: calc-rem(36);
     &::after {
       content: '';
       display: block;
       height: 2px;
       background: $color-border;
       width: 100%;
-      margin: 0.75rem 0 1.25rem;
+      margin: calc-rem(12) 0 calc-rem(20);
     }
   }
   .list {
-    display: flex;
+    display: grid;
+    @media (min-width: 600px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    @media (min-width: 650px) {
+      gap: 1%;
+    }
+    @media (min-width: 700px) {
+      gap: 5%;
+    }
+    grid-template-columns: auto;
+    row-gap: calc-rem(38);
   }
 }
 </style>

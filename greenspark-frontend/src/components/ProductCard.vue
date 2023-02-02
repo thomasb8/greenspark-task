@@ -35,15 +35,23 @@
       </div>
     </div>
     <div class="options">
-      <div>
+      <div class="option">
+        <div class="name">Link to Public Profile</div>
         <Checkbox :value="props.widget.linked"
                   :id="`cb-${props.widget.id}`"
                   @on-change="props.widget.linked = !props.widget.linked"></Checkbox>
       </div>
-      <div><ColorSelector :id="props.widget.id.toString()"
+      <div class="option">
+        <div class="name">Badge colour</div>
+        <ColorSelector :id="props.widget.id.toString()"
                           :selected-color="props.widget.selectedColor"
-                          @change="props.widget.selectedColor = $event;"></ColorSelector></div>
-      <div><Switch :value="props.widget.active" @on-change="props.widget.active = !props.widget.active" ></Switch></div>
+                          @change="props.widget.selectedColor = $event">
+        </ColorSelector>
+      </div>
+      <div class="option">
+        <div class="name">Activate badge</div>
+        <Switch :value="props.widget.active" @on-change="props.widget.active = !props.widget.active"></Switch>
+      </div>
     </div>
   </div>
 </template>
@@ -51,27 +59,38 @@
 <style scoped lang="scss">
 .product-card-container {
   .title-container {
-    padding: 0.625rem 0.75rem;
+    padding: calc-rem(10) calc-rem(12);
     border-radius: 6px;
     @include color-classes();
     display: flex;
     align-items: center;
     .title {
       margin-left: 1rem;
+      white-space: nowrap;
       .action {
         font-weight: normal;
-        font-size: .75rem;
-        padding-bottom: 0.5rem;
+        font-size: calc-rem(12);
+        padding-bottom: calc-rem(8);
       }
       .product-description {
         font-weight: bold;
-        font-size: 1.115rem;
+        font-size: calc-rem(17.84);
       }
     }
   }
   .options {
     display: flex;
     flex-direction: column;
+    .option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: calc-rem(13) 0 calc-rem(6.5);
+      .name {
+        font-size: calc-rem(14);
+        color: $color-green;
+      }
+    }
   }
 }
 </style>

@@ -19,5 +19,6 @@ const emit = defineEmits(['change']);
 <style scoped lang="scss">
 .color-selector {
   display: flex;
+  gap: calc-rem(4);
 }
 </style>

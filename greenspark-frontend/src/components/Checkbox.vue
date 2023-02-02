@@ -19,15 +19,14 @@ function handleChange(e: Event) {
 <style scoped lang="scss">
 input {
   visibility: hidden;
-  width: 0;
-  height: 0;
+  position: absolute;
 }
 .box {
   position: relative;
-  width: 0.875rem;
-  height: 0.875rem;
+  width: calc-rem(14);
+  height: calc-rem(14);
   border-radius: 2px;
-  border: 0.125rem solid black;
+  border: calc-rem(2) solid black;
   &:hover {
     cursor: pointer;
     &::after {
@@ -36,8 +35,8 @@ input {
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 2.25rem;
-      height: 2.25rem;
+      width: calc-rem(36);
+      height: calc-rem(36);
       transform: translate(-50%, -50%);
       background: $color-gray;
       opacity: 0.5;
@@ -52,8 +51,8 @@ input {
     }
   }
   &.checked {
-    width: 1.125rem;
-    height: 1.125rem;
+    width: calc-rem(18);
+    height: calc-rem(18);
     border: none;
     background: url("../assets/checkbox.svg") no-repeat;
     background-size: contain;

@@ -24,3 +24,7 @@ $color-border: #B0B0B0;
     background: $color-black;
   }
 }
+
+@function calc-rem($px) {
+  @return calc($px / 16)+rem;
+}

@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { WidgetsService } from "./widgets.service";
 import Widget from "./widget.entity";
+import PartialUpdateWidgetDto from "./dto/UpdateWidgetDto";
 
 @Controller('widgets')
 export class WidgetsController {
@@ -10,5 +11,10 @@ export class WidgetsController {
   @Get()
   async list(): Promise<Widget[]> {
     return this.widgetService.list();
+  }
+
+  @Put('/:widgetId')
+  async update(@Param('widgetId') id: number, @Body() widget: PartialUpdateWidgetDto): Promise<Widget | undefined> {
+    return this.widgetService.update(id, widget);
   }
 }

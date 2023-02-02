@@ -3,7 +3,7 @@ import { WidgetsService } from "./widgets.service";
 import Widget from "./widget.entity";
 import PartialUpdateWidgetDto from "./dto/UpdateWidgetDto";
 
-@Controller('widgets')
+@Controller('product-widgets')
 export class WidgetsController {
   constructor(private widgetService: WidgetsService) {
   }

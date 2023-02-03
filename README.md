@@ -34,8 +34,6 @@ create a new one.
 
 ## Setup
 
-``
-
 `cp ./greenspark-frontend/.env.example ./greenspark-frontend/.env`
 
 `cp ./greenspark-backend/.env.example ./greenspark-backend/.env`

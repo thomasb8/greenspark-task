@@ -31,7 +31,7 @@ describe('WidgetController (e2e)', () => {
 
   it('/list (GET)', async () => {
     const res = await request(app.getHttpServer())
-      .get('/widgets');
+      .get('/product-widgets');
     expect(res.status).toEqual(200);
     expect(res.body).toEqual(fakeData);
   });
@@ -39,16 +39,26 @@ describe('WidgetController (e2e)', () => {
   describe('update', () => {
     it('should fail on invalid dto', async () => {
       const res = await request(app.getHttpServer())
-        .put('/widgets/1')
+        .put('/product-widgets/1')
         .send({ id: 233, active: 'false' });
       expect(res.status).toEqual(400);
     })
 
+    it('should ignore extra properties', async () => {
+      const [first] = (await request(app.getHttpServer())
+        .get('/product-widgets')).body
+      const res = await request(app.getHttpServer())
+        .put(`/product-widgets/${first.id}`)
+        .send({ id: 233, active: !first.active, action: 'something' });
+      expect(res.status).toEqual(200);
+      expect(res.body).toMatchObject({ id: first.id, active: !first.active, action: first.action })
+    })
+
     it('should update correct widget', async () => {
       const [first] = (await request(app.getHttpServer())
-        .get('/widgets')).body
+        .get('/product-widgets')).body
       const res = await request(app.getHttpServer())
-        .put(`/widgets/${first.id}`)
+        .put(`/product-widgets/${first.id}`)
         .send({ linked: !first.linked });
       expect(res.status).toEqual(200);
       expect(res.body).toMatchObject({ id: first.id, linked: !first.linked })
@@ -56,9 +66,9 @@ describe('WidgetController (e2e)', () => {
 
     it('should update multiple parameters at once', async () => {
       const [first] = (await request(app.getHttpServer())
-        .get('/widgets')).body
+        .get('/product-widgets')).body
       const res = await request(app.getHttpServer())
-        .put(`/widgets/${first.id}`)
+        .put(`/product-widgets/${first.id}`)
         .send({ linked: !first.linked, active: !first.active, selectedColor: 'black' });
       expect(res.status).toEqual(200);
       expect(res.body).toMatchObject({ id: first.id, linked: !first.linked, active: !first.active, selectedColor: 'black' })
